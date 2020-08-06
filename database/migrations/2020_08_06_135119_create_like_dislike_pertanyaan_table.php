@@ -17,11 +17,15 @@ class CreateLikeDislikePertanyaanTable extends Migration
             $table->bigIncrements('id');
             $table->integer('point', false, true)->length(11);
             $table->BigInteger('profile_id')->unsigned();
+            // $table->BigInteger('pertanyaan_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('profile_id')
                 ->references('id')
                 ->on('profile');
+            // $table->foreign('pertanyaan_id')
+            //     ->references('id')
+            //     ->on('pertanyaan');
         });
     }
 

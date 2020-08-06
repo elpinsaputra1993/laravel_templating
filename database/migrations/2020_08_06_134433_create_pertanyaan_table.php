@@ -18,11 +18,15 @@ class CreatePertanyaanTable extends Migration
             $table->string('judul', '45');
             $table->string('isi');
             $table->BigInteger('profile_id')->unsigned();
+            // $table->BigInteger('jawaban_tepat_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('profile_id')
                 ->references('id')
                 ->on('profile');
+            // $table->foreign('jawaban_tepat_id')
+            //     ->references('id')
+            //     ->on('jawaban');
         });
     }
 
