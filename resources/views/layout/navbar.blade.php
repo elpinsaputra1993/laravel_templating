@@ -8,6 +8,9 @@
             <a href="/" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
+            <a href="/pertanyaan" class="nav-link">Pertanyaan</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
             <a href="/data-tables" class="nav-link">View Datatables</a>
         </li>
     </ul>
