@@ -8,7 +8,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        <form method="post" action="/pertanyaan/{{$get->id}}">
+        <form method="post" action="/pertanyaan/{{$get->serial}}">
             @csrf
             @method('PUT')
             <div class="form-group">

@@ -85,7 +85,7 @@ class PertanyaanController extends Controller
     {
         $idx = Crypt::decrypt($id);
         $get = DB::table('pertanyaan_test')->where('id', $idx)->first();
-
+        $get->serial = $id;
         // $data = [
         //     'get' => $get,
         //     'serial' => $id
