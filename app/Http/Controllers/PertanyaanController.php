@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+use App\Pertanyaan;
 
 class PertanyaanController extends Controller
 {
@@ -15,7 +16,8 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $get = DB::table('pertanyaan_test')->get();
+        // $get = DB::table('pertanyaan_test')->get();
+        $get = Pertanyaan::all();
 
         foreach ($get as $val) :
             $val->serial = Crypt::encrypt(($val->id));
@@ -36,7 +38,7 @@ class PertanyaanController extends Controller
     public function create()
     {
         $data = [
-            'user' =>  DB::table('profile')->get(),
+            'user' =>  Pertanyaan::all(),
         ];
         return view('pertanyaan.form', $data);
     }
@@ -53,10 +55,14 @@ class PertanyaanController extends Controller
             'judul' => 'required|unique:pertanyaan_test',
             'isi' => 'required'
         ]);
-        $query = DB::table('pertanyaan_test')->insert([
+        $query = Pertanyaan::create([
             'judul' => $request->judul,
             'isi' => $request->isi,
         ]);
+        // $query = DB::table('pertanyaan_test')->insert([
+        //     'judul' => $request->judul,
+        //     'isi' => $request->isi,
+        // ]);
 
         return redirect('/pertanyaan')->with('success', 'Data berhasil disimpan !');
     }
@@ -70,7 +76,8 @@ class PertanyaanController extends Controller
     public function show($id)
     {
         $idx = Crypt::decrypt($id);
-        $get = DB::table('pertanyaan_test')->where('id', $idx)->first();
+        // $get = DB::table('pertanyaan_test')->where('id', $idx)->first();
+        $get = Pertanyaan::where('id', $idx)->first();
 
         return view('pertanyaan.show', compact('get'));
     }
@@ -84,7 +91,8 @@ class PertanyaanController extends Controller
     public function edit($id)
     {
         $idx = Crypt::decrypt($id);
-        $get = DB::table('pertanyaan_test')->where('id', $idx)->first();
+        // $get = DB::table('pertanyaan_test')->where('id', $idx)->first();
+        $get = Pertanyaan::where('id', $idx)->first();
         $get->serial = $id;
         // $data = [
         //     'get' => $get,
@@ -100,7 +108,7 @@ class PertanyaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update(Request $request, $id)
     {
         $idx = Crypt::decrypt($id);
         // $idx = Crypt::decrypt($request->id);
@@ -108,10 +116,14 @@ class PertanyaanController extends Controller
             'judul' => 'required',
             'isi' => 'required'
         ]);
-        $query = DB::table('pertanyaan_test')->where('id', $idx)->update([
+        $query = Pertanyaan::where('id', $idx)->update([
             'judul' => $request->judul,
             'isi' => $request->isi,
         ]);
+        // $query = DB::table('pertanyaan_test')->where('id', $idx)->update([
+        //     'judul' => $request->judul,
+        //     'isi' => $request->isi,
+        // ]);
 
         return redirect('/pertanyaan')->with('success', 'Data berhasil diperbarui !');
     }
@@ -125,7 +137,8 @@ class PertanyaanController extends Controller
     public function destroy($id)
     {
         $idx = Crypt::decrypt($id);
-        $query = DB::table('pertanyaan_test')->where('id', $idx)->delete();
+        $query = Pertanyaan::where('id', $idx)->delete();
+        // $query = DB::table('pertanyaan_test')->where('id', $idx)->delete();
 
         return redirect('/pertanyaan')->with('success', 'Data berhasil dihapus !');
     }

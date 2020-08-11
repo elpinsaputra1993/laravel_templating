@@ -22,11 +22,12 @@ Route::get('/', 'testController@index');
 Route::get('/data-tables', 'testController@datatables');
 
 
-// route::resource('/pertanyaan', 'PertanyaanController');
-route::get('/pertanyaan', 'PertanyaanController@index');
-route::get('/pertanyaan/create', 'PertanyaanController@create');
-Route::post('pertanyaan/store', 'PertanyaanController@store');
-Route::get('/pertanyaan/{id}', 'PertanyaanController@show');
-Route::get('/pertanyaan/{id}/edit', 'PertanyaanController@edit');
-Route::put('/pertanyaan/{id}', 'PertanyaanController@update');
-Route::delete('/pertanyaan/{id}', 'PertanyaanController@destroy');
+route::resource('/pertanyaan', 'PertanyaanController');
+route::resource('/pertanyaantest', 'PertanyaanTestController');
+// route::get('/pertanyaan', 'PertanyaanController@index');
+// route::get('/pertanyaan/create', 'PertanyaanController@create');
+// Route::post('pertanyaan/store', 'PertanyaanController@store');
+// Route::get('/pertanyaan/{id}', 'PertanyaanController@show');
+// Route::get('/pertanyaan/{id}/edit', 'PertanyaanController@edit');
+// Route::put('/pertanyaan/{id}', 'PertanyaanController@update');
+// Route::delete('/pertanyaan/{id}', 'PertanyaanController@destroy');
